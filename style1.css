@@ -1,0 +1,72 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #141414; /* Dark background */
+    font-family: Arial, sans-serif; /* Professional font */
+}
+
+.wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background: linear-gradient(to bottom right, #1a1a1a, #333); /* Gradient background */
+    padding: 20px; /* Padding around the gallery */
+}
+
+:root {
+    --index: calc(1vw + 1vh);
+    --transition: cubic-bezier(.1, .7, 0, 1);
+}
+
+.items {
+    display: flex;
+    gap: 1rem; /* Increased gap between items */
+    perspective: calc(var(--index) * 35);
+}
+
+.item {
+    width: calc(var(--index) * 25); /* Increased width for larger thumbnails */
+    height: calc(var(--index) * 25); /* Make it a square */
+    background-color: #222;
+    cursor: pointer;
+    filter: grayscale(1) brightness(.5);
+    transition: transform 0.3s var(--transition), filter 0.3s var(--transition), box-shadow 0.3s var(--transition);
+    will-change: transform, filter, box-shadow;
+    position: relative; /* Added for positioning the iframe */
+    overflow: hidden; /* Ensures the iframe does not overflow */
+    border-radius: 10px; /* Rounded corners for a modern look */
+}
+
+.item:hover {
+    transform: scale(1.1); /* Scale up on hover */
+    filter: inherit; /* Remove grayscale and brightness on hover */
+    box-shadow: 0 0 20px rgb(255, 244, 244); /* Glow effect */
+}
+
+.item iframe {
+    width: 100%;
+    height: 100%;
+    border: none; /* Removes default border */
+    display: none; /* Hide iframe initially */
+}
+
+.item img {
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    transition: opacity 0.3s ease;
+    border-radius: 10px; /* Match the image corners with the item */
+}
+
+.item img:hover {
+    opacity: 0.8; /* Optional hover effect */
+}
+
+.items .item:active, .items .item:focus {
+    z-index: 100;
+}
